@@ -3,17 +3,45 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!--读取配置文件    -->
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+
     <!--扫描包并排除controller注解-->
     <context:component-scan base-package="com.time">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
-    <context:property-placeholder location="classpath:jdbc.property"/>
-
     <!--数据源-->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
-        <property name="driverClassName" value=""></property>
-
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <!-- 配置初始化大小、最小、最大 -->
+        <property name="initialSize" value="${datasource.initialSize}" />
+        <property name="minIdle" value="${datasource.minIdle}" />
+        <property name="maxActive" value="${datasource.maxActive}" />
+        <!--配置获取连接等待超时的时间-->
+        <property name="maxWait" value="${datasource.maxWait}" />
+        <!--配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒-->
+        <property name="timeBetweenEvictionRunsMillis" value="${datasource.timeBetweenEvictionRunsMillis}" />
+        <!--配置一个连接在池中最小生存的时间，单位是毫秒-->
+        <property name="minEvictableIdleTimeMillis" value="${datasource.minEvictableIdleTimeMillis}" />
+        <property name="validationQuery" value="${datasource.validationQuery}" />
+        <property name="testWhileIdle" value="${datasource.testWhileIdle}" />
+        <property name="testOnBorrow" value="${datasource.testOnBorrow}" />
+        <property name="testOnReturn" value="${datasource.testOnReturn}" />
+        <!--打开PSCache，并且指定每个连接上PSCache的大小-->
+        <property name="poolPreparedStatements" value="${datasource.poolPreparedStatements}" />
+        <property name="maxPoolPreparedStatementPerConnectionSize" value="${datasource.maxPoolPreparedStatementPerConnectionSize}" />
+        <!--配置监控统计拦截的filters-->
+        <property name="filters" value="${datasource.filters}" />
+        <!--通过connectProperties属性来打开mergeSql功能；慢SQL记录-->
+        <property name="connectionProperties" value="${datasource.connectionProperties}" />
+        <!--合并多个DruidDataSource的监控数据-->
+        <!-- 配置监控统计拦截的filters -->
+        <property name="useGlobalDataSourceStat" value="${datasource.useGlobalDataSourceStat}" />
     </bean>
 
 
