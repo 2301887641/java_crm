@@ -49,13 +49,34 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="hibernateProperties">
             <props>
-                <prop></prop>
+                <!-- 设置方言 -->
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hbm2ddl.auto">update</prop>
+                <!--设置编码方式为utf-8-->
+                <prop key="hibernate.connection.characterEncoding">utf-8</prop>
+                <!--打印sql-->
+                <prop key="show_sql">true</prop>
+                <!-- 格式化sql -->
+                <prop key="format_sql">true</prop>
             </props>
+        </property>
+        <property name="mappingResources">
+            <list>
+                <value>hbm/User.hbm.xml</value>
+            </list>
         </property>
     </bean>
 
-    <!--配置事务-->
+    <!--配置事务管理器-->
     <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <!--开启事务注解-->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <!--配置flyway-->
+    <bean id="flyway" class="org.flywaydb.core.Flyway" init-method="migrate" depends-on="dataSource">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="locations" value="db/migrations/"/>
     </bean>
 </beans>
