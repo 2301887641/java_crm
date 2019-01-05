@@ -3,9 +3,19 @@
         "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="">
-
-
+    <class name="com.time.crm.dao.entity.UserEntity" table="crm_user">
+        <id name="id" column="id">
+            <generator class="native"/>
+        </id>
+        <property name="username" column="username"/>
+        <property name="mobile" column="mobile"/>
+        <property name="email" column="email"/>
+        <property name="password" column="password"/>
+        <property name="salt" column="salt"/>
+        <property name="avatar" column="avatar"/>
+        <property name="administrator" column="administrator"/>
+        <property name="status" column="status"/>
+        <property name="registerIp" column="registerIp"/>
     </class>
 
 

@@ -5,5 +5,10 @@ import com.time.crm.service.api.BaseService;
 /**
  * @author suiguozhen on 19-1-4 下午8:31
  */
-public class BaseServiceImpl implements BaseService {
+public class BaseServiceImpl<DTO> implements BaseService<DTO> {
+
+    @Override
+    public void save(DTO dto) {
+
+    }
 }

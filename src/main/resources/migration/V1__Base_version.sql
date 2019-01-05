@@ -20,4 +20,4 @@ CREATE TABLE crm_user (
 	UNIQUE KEY (username),
 	UNIQUE KEY (email)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-INSERT INTO crm_user (id, mobile, username, email, password, salt, avatar, administrator, status, register_ip) VALUES (1,'15865658745', 'admin', '15478541254@126.com', '$2a$10$AXJY/pLHIJKk3c8F5L6sfeaS6ypLI0IpWfBhYfxepJerb0ZO3xMt2', 'sdfsdf', 'dfgdgdfg', 1, 0, '192.168.2.12');
+INSERT INTO crm.crm_user (id, mobile, username, email, password, salt, avatar, administrator, status, register_ip) VALUES (1,'15865658745', 'admin', '15478541254@126.com', '$2a$10$AXJY/pLHIJKk3c8F5L6sfeaS6ypLI0IpWfBhYfxepJerb0ZO3xMt2', 'sdfsdf', 'dfgdgdfg', 1, 0, '192.168.2.12');
