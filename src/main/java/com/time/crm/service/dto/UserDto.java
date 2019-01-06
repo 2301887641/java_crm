@@ -8,7 +8,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class UserDto {
+public class UserDto extends BaseDto{
     private String mobile;
     private String username;
     private String email;
