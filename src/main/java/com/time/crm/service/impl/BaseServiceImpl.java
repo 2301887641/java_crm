@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 /**
  * @author suiguozhen on 19-1-4 下午8:31
  */
-public class BaseServiceImpl<DTO extends BaseDto,ENTITY extends BaseEntity,DAO extends BaseDao<ENTITY>> implements BaseService<DTO> {
+public class BaseServiceImpl<DTO extends BaseDto,ENTITY extends BaseEntity,DAO extends BaseDao> implements BaseService<DTO> {
 
     @Override
     public void save(DTO dto) {

@@ -23,8 +23,6 @@ public class IndexController {
 
     @GetMapping("/add.do")
     public String add(UserDto userDto){
-        userDto.setUsername("haha");
-        userService.save(userDto);
         return "top";
     }
 }
